@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "DAZN Assignment"
 include(":app")
+include(":presentation")
+include(":data")
