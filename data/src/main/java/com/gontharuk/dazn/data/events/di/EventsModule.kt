@@ -1,6 +1,5 @@
 package com.gontharuk.dazn.data.events.di
 
-import com.gontharuk.dazn.data.api.ApiService
 import com.gontharuk.dazn.data.events.entity.EventModelFactory
 import com.gontharuk.dazn.data.events.repository.EventsRepository
 import com.gontharuk.dazn.data.events.repository.EventsRepositoryImpl
@@ -18,18 +17,12 @@ interface EventsModule {
     companion object {
         @Provides
         @Singleton
-        fun provideEventsRepository(
-            api: ApiService,
-            factory: EventModelFactory
-        ): EventsRepository = EventsRepositoryImpl(
-            api = api,
-            factory = factory
-        )
+        fun provideEventModelFactory(): EventModelFactory = EventModelFactory()
     }
 
     @Binds
     @Singleton
-    fun provideEventModelFactory(
-        factory: EventModelFactory
-    ): EventModelFactory
+    fun provideEventsRepository(
+        repository: EventsRepositoryImpl
+    ): EventsRepository
 }

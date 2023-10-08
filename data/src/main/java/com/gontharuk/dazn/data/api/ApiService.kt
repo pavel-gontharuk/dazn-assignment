@@ -7,8 +7,8 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("getEvents")
-    fun getEvents(): List<EventModelServer>
+    suspend fun getEvents(): List<EventModelServer>
 
     @GET("getSchedule")
-    fun getSchedule(): List<ScheduleModelServer>
+    suspend fun getSchedule(): List<ScheduleModelServer>
 }
