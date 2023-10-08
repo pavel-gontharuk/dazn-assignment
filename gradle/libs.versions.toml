@@ -1,5 +1,6 @@
 [versions]
 androidxCore = "1.12.0"
+glideCompose = "1.0.0-beta01"
 appcompat = "1.6.1"
 converterGson = "2.9.0"
 espressoCore = "3.5.1"
@@ -15,6 +16,7 @@ lifecycle-runtime-ktx = "2.6.2"
 activity-compose = "1.8.0"
 compose-bom = "2023.10.00"
 retrofit = "2.9.0"
+androidComposeMaterial = "1.5.3"
 
 [libraries]
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleViewmodelKtx" }
@@ -25,13 +27,13 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 com-google-dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
 com-google-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltAndroid" }
-androidx-navigation-compose = { group = "androidx.navigation", name="navigation-compose",  version.ref = "navigationCompose" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-appcompat = { group = "androidx.appcompat", name="appcompat", version.ref = "appcompat" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
-com-google-android-material = { group = "com.google.android.material", name="material",version.ref = "material" }
+com-google-android-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-com-squareup-retrofit2-converter-gson = { group = "com.squareup.retrofit2", name="converter-gson",version.ref = "converterGson" }
-com-squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name="retrofit",version.ref = "retrofit" }
+com-squareup-retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }
+com-squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
@@ -41,9 +43,11 @@ androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "u
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-test-espresso-core = { group = "androidx.test.espresso", name= "espresso-core", version.ref = "espressoCore" }
-androidx-test-ext-junit = { group = "androidx.test.ext", name="junit",version.ref = "junitVersion" }
-junit = { group = "junit", name="junit",version.ref = "junit" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "androidComposeMaterial" }
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+com-github-bumptech-glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glideCompose" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [plugins]
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }

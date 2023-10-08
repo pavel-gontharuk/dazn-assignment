@@ -1,4 +1,4 @@
-package com.gontharuk.dazn.presentation.core.ui
+package com.gontharuk.dazn.presentation.core.view
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,15 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun Progress() {
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier
-                .width(44.dp)
-                .align(Alignment.Center),
-            color = MaterialTheme.colorScheme.primary,
-        )
-    }
+fun Progress() = Box(
+    modifier = Modifier.fillMaxSize()
+) {
+    CircularProgressIndicator(
+        modifier = Modifier
+            .width(44.dp)
+            .align(Alignment.Center),
+        color = MaterialTheme.colorScheme.primary,
+    )
 }

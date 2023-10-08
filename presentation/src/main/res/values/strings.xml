@@ -1,3 +1,4 @@
 <resources>
-
+    <string name="schedule">Schedule</string>
+    <string name="events">Events</string>
 </resources>
