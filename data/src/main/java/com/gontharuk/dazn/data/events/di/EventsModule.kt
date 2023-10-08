@@ -1,8 +1,8 @@
 package com.gontharuk.dazn.data.events.di
 
 import com.gontharuk.dazn.data.events.entity.EventModelFactory
-import com.gontharuk.dazn.data.events.repository.EventsRepository
-import com.gontharuk.dazn.data.events.repository.EventsRepositoryImpl
+import com.gontharuk.dazn.data.events.repository.EventRepository
+import com.gontharuk.dazn.data.events.repository.EventRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -23,6 +23,6 @@ interface EventsModule {
     @Binds
     @Singleton
     fun provideEventsRepository(
-        repository: EventsRepositoryImpl
-    ): EventsRepository
+        repository: EventRepositoryImpl
+    ): EventRepository
 }

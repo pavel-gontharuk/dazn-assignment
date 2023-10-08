@@ -2,7 +2,7 @@ package com.gontharuk.dazn.presentation.events.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gontharuk.dazn.data.events.repository.EventsRepository
+import com.gontharuk.dazn.data.events.repository.EventRepository
 import com.gontharuk.dazn.presentation.events.enity.EventItemModel
 import com.gontharuk.dazn.presentation.events.enity.EventItemModelFactory
 import com.gontharuk.dazn.presentation.events.enity.EventsState
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EventsViewModel @Inject constructor(
-    private val eventsRepository: EventsRepository,
+    private val eventRepository: EventRepository,
     private val itemFactory: EventItemModelFactory
 ) : ViewModel() {
 
@@ -26,7 +26,7 @@ class EventsViewModel @Inject constructor(
 
     suspend fun fetch() {
         val events = viewModelScope.async(Dispatchers.IO) {
-            eventsRepository.getEvents()
+            eventRepository.getEvents()
                 .catch { it.printStackTrace() }
                 .map { list ->
                     list.map { itemFactory.create(it) }

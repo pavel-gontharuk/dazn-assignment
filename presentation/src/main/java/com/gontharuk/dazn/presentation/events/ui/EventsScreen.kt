@@ -25,11 +25,9 @@ fun EventsScreen(
         modifier = Modifier
             .fillMaxHeight()
     ) {
-        state.also {
-            when (it) {
-                EventsState.Loading -> EventsScreenLoading()
-                is EventsState.Show -> EventsScreenShow(state = it)
-            }
+        when (val mState = state) {
+            EventsState.Loading -> EventsScreenLoading()
+            is EventsState.Show -> EventsScreenShow(state = mState)
         }
     }
 }

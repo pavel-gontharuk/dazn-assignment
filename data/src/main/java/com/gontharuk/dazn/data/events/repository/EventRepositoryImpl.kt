@@ -7,10 +7,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class EventsRepositoryImpl @Inject constructor(
+class EventRepositoryImpl @Inject constructor(
     private val api: ApiService,
     private val factory: EventModelFactory
-) : EventsRepository {
+) : EventRepository {
 
     override fun getEvents(): Flow<List<EventModel>> = flow {
         api.getEvents()
