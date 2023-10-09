@@ -30,6 +30,7 @@ class EventsViewModel @Inject constructor(
                 .catch { it.printStackTrace() }
                 .map { list ->
                     list.map { itemFactory.create(it) }
+                        .sortedBy { it.date }
                 }
         }
         events.await().collect {

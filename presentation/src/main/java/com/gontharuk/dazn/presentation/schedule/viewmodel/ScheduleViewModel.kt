@@ -28,6 +28,7 @@ class ScheduleViewModel @Inject constructor(
             scheduleRepository.getSchedule()
                 .map { list ->
                     list.map { itemFactory.create(it) }
+                        .sortedBy { it.date }
                 }
         }
         schedule.await().collect {
