@@ -2,22 +2,20 @@ package com.gontharuk.dazn.presentation.schedule.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gontharuk.dazn.data.schedule.entity.ScheduleModel
 import com.gontharuk.dazn.data.schedule.repository.ScheduleRepository
-import com.gontharuk.dazn.presentation.schedule.entity.ScheduleItemModel
-import com.gontharuk.dazn.presentation.schedule.entity.ScheduleItemModelFactory
 import com.gontharuk.dazn.presentation.schedule.entity.ScheduleState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 @HiltViewModel
 class ScheduleViewModel @Inject constructor(
-    private val scheduleRepository: ScheduleRepository,
-    private val itemFactory: ScheduleItemModelFactory
+    private val scheduleRepository: ScheduleRepository
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<ScheduleState> = MutableStateFlow(ScheduleState.Loading)
@@ -26,17 +24,14 @@ class ScheduleViewModel @Inject constructor(
     suspend fun fetch() {
         val schedule = viewModelScope.async(Dispatchers.IO) {
             scheduleRepository.getSchedule()
-                .map { list ->
-                    list.map { itemFactory.create(it) }
-                        .sortedBy { it.date }
-                }
+                .catch { it.printStackTrace() }
         }
         schedule.await().collect {
             updateState(it)
         }
     }
 
-    private fun updateState(items: List<ScheduleItemModel>) {
+    private fun updateState(items: List<ScheduleModel>) {
         state.value.also { state ->
             _state.value = state.update(items)
         }

@@ -8,22 +8,31 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.gontharuk.dazn.presentation.events.enity.EventItemModel
 import com.gontharuk.dazn.presentation.events.enity.EventsState
+import com.gontharuk.dazn.presentation.events.enity.toItemModel
 
 @Composable
 fun EventsScreenShow(
     state: EventsState.Show
 ) {
+    val context = LocalContext.current
+
+    val items: List<EventItemModel> = remember(state, context) {
+        state.items.map { it.toItemModel(context.resources) }
+    }
+
     Column {
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
         ) {
-            items(state.items) {
+            items(items) {
                 EventItemView(model = it)
             }
         }

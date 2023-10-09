@@ -11,24 +11,32 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.gontharuk.dazn.presentation.core.view.ImageViewUri
 import com.gontharuk.dazn.presentation.schedule.entity.ScheduleItemModel
 import com.gontharuk.dazn.presentation.schedule.entity.ScheduleState
+import com.gontharuk.dazn.presentation.schedule.entity.toItemModel
 
 @Composable
 fun ScheduleScreenShow(
     state: ScheduleState.Show
 ) {
+    val context = LocalContext.current
+
+    val items: List<ScheduleItemModel> = remember(state, context) {
+        state.items.map { it.toItemModel(context.resources) }
+    }
 
     Column {
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
         ) {
-            items(state.items) {
+            items(items) {
                 ScheduleItemView(it)
             }
         }
