@@ -1,6 +1,16 @@
 <resources>
     <string name="schedule">Schedule</string>
     <string name="events">Events</string>
-    <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <plurals name="daysToEvent">
+        <!--        todo zero do not works for plurals. b/36917255-->
+        <item quantity="zero">@string/today</item>
+        <item quantity="one">@string/tomorrow</item>
+        <item quantity="two">In two days</item>
+        <item quantity="other">In %d days</item>
+        <item quantity="few">In %d days</item>
+        <item quantity="many">In %d days</item>
+    </plurals>
 </resources>

@@ -12,9 +12,14 @@ fun ScheduleScreen(
     viewModel: ScheduleViewModel = hiltViewModel()
 ) {
     val state: ScheduleState by viewModel.state.collectAsState()
+    val filtered: Boolean by viewModel.tomorrowFilter.collectAsState()
 
     when (val mState = state) {
         ScheduleState.Loading -> ScheduleScreenLoading()
-        is ScheduleState.Show -> ScheduleScreenShow(state = mState)
+        is ScheduleState.Show -> ScheduleScreenShow(
+            filtered = filtered,
+            state = mState,
+            onFilterClicked = viewModel::onFilterClicked
+        )
     }
 }

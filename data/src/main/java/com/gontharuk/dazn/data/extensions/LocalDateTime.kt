@@ -7,5 +7,5 @@ import java.time.format.DateTimeFormatter
 
 fun String.localDateTime(): LocalDateTime = Instant
     .from(DateTimeFormatter.ISO_INSTANT.parse(this))
-    .atZone(ZoneId.of("UTC"))
+    .atZone(ZoneId.systemDefault())
     .toLocalDateTime()
