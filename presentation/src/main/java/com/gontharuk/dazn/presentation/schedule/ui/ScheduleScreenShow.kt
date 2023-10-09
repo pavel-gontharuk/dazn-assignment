@@ -1,5 +1,6 @@
 package com.gontharuk.dazn.presentation.schedule.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,23 +23,32 @@ import com.gontharuk.dazn.presentation.schedule.entity.ScheduleItemModel
 import com.gontharuk.dazn.presentation.schedule.entity.ScheduleState
 import com.gontharuk.dazn.presentation.schedule.entity.toItemModel
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ScheduleScreenShow(
     state: ScheduleState.Show
 ) {
     val context = LocalContext.current
 
-    val items: List<ScheduleItemModel> = remember(state, context) {
+    val listState = rememberLazyListState()
+    val items: List<ScheduleItemModel> = remember(state.items, context) {
         state.items.map { it.toItemModel(context.resources) }
     }
 
     Column {
         LazyColumn(
             modifier = Modifier
-                .weight(1f)
+                .weight(1f),
+            state = listState,
         ) {
-            items(items) {
-                ScheduleItemView(it)
+            items(
+                items = items,
+                key = { it.hashCode() }
+            ) {
+                ScheduleItemView(
+                    modifier = Modifier.animateItemPlacement(),
+                    model = it
+                )
             }
         }
     }
@@ -45,10 +56,11 @@ fun ScheduleScreenShow(
 
 @Composable
 fun ScheduleItemView(
+    modifier: Modifier,
     model: ScheduleItemModel
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .height(100.dp)
     ) {
         ImageViewUri(

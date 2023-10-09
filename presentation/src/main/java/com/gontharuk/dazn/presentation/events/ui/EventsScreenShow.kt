@@ -23,15 +23,12 @@ fun EventsScreenShow(
 ) {
     val context = LocalContext.current
 
-    val items: List<EventItemModel> = remember(state, context) {
+    val items: List<EventItemModel> = remember(state.items, context) {
         state.items.map { it.toItemModel(context.resources) }
     }
 
     Column {
-        LazyColumn(
-            modifier = Modifier
-                .weight(1f)
-        ) {
+        LazyColumn {
             items(items) {
                 EventItemView(model = it)
             }

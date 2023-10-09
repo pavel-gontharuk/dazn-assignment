@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ScheduleRepository {
 
-    fun getSchedule(): Flow<List<ScheduleModel>>
+    fun getSchedule(repeatEachMs: Long = 0L): Flow<List<ScheduleModel>>
 }

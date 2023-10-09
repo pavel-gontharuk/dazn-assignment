@@ -6,6 +6,7 @@ import com.gontharuk.dazn.data.schedule.entity.ScheduleModel
 import com.gontharuk.dazn.presentation.core.formatting.format
 
 data class ScheduleItemModel(
+    val id: Int,
     val title: String,
     val subtitle: String,
     val date: String,
@@ -15,6 +16,7 @@ data class ScheduleItemModel(
 fun ScheduleModel.toItemModel(
     resources: Resources
 ): ScheduleItemModel = ScheduleItemModel(
+    id = id,
     title = title,
     subtitle = subtitle,
     date = date.format(resources),
