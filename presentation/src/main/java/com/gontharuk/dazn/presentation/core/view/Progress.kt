@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gontharuk.dazn.presentation.core.dimensions.Dimens
 
 @Composable
 fun Progress() = Box(
@@ -16,7 +17,7 @@ fun Progress() = Box(
 ) {
     CircularProgressIndicator(
         modifier = Modifier
-            .width(44.dp)
+            .width(Dimens.Size.progress)
             .align(Alignment.Center),
         color = MaterialTheme.colorScheme.primary,
     )

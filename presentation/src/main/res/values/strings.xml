@@ -1,6 +1,7 @@
 <resources>
     <string name="schedule">Schedule</string>
     <string name="events">Events</string>
+    <string name="video">Video</string>
     <string name="yesterday">Yesterday</string>
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>

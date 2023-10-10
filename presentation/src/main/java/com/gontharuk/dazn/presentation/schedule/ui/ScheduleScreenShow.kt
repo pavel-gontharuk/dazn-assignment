@@ -4,33 +4,34 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedFilterChip
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.gontharuk.dazn.presentation.R
+import com.gontharuk.dazn.presentation.core.dimensions.Dimens
 import com.gontharuk.dazn.presentation.core.view.ImageViewUri
 import com.gontharuk.dazn.presentation.schedule.entity.ScheduleItemModel
 import com.gontharuk.dazn.presentation.schedule.entity.ScheduleState
@@ -69,7 +70,7 @@ fun ScheduleScreenShow(
         }
         ElevatedFilterChip(
             modifier = Modifier
-                .padding(6.dp)
+                .padding(Dimens.Padding.content)
                 .align(Alignment.TopEnd),
             onClick = onFilterClicked,
             label = {
@@ -79,9 +80,8 @@ fun ScheduleScreenShow(
             leadingIcon = if (filtered) {
                 {
                     Icon(
-                        imageVector = Icons.Filled.Done,
-                        contentDescription = "Done icon",
-                        modifier = Modifier.size(FilterChipDefaults.IconSize)
+                        imageVector = ImageVector.vectorResource(R.drawable.check),
+                        contentDescription = "Done icon"
                     )
                 }
             } else null
@@ -94,24 +94,46 @@ fun ScheduleItemView(
     modifier: Modifier,
     model: ScheduleItemModel
 ) {
-    Row(
+    Column(
         modifier = modifier
-            .height(100.dp)
+            .padding(Dimens.Padding.content, 0.dp)
     ) {
-        ImageViewUri(
+        Row(
             modifier = Modifier
-                .aspectRatio(4f / 3f)
-                .fillMaxHeight(),
-            uri = model.imageUrl
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
+                .height(Dimens.Size.listItem)
         ) {
-            Divider(thickness = 1.dp, color = Color.Black)
-            Text(text = model.title)
-            Text(text = model.subtitle)
-            Text(text = model.date)
+            ImageViewUri(
+                modifier = Modifier
+                    .aspectRatio(Dimens.Ratio.thumbnail)
+                    .fillMaxHeight(),
+                uri = model.imageUrl
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(Dimens.Padding.content, 0.dp, 0.dp, 0.dp)
+                    .height(Dimens.Size.listItem)
+            ) {
+                Text(
+                    text = model.title,
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Text(
+                    text = model.subtitle,
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = model.date,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
+            }
         }
+        Divider(
+            color = Color.Black,
+            modifier = Modifier.padding(0.dp, Dimens.Padding.divider),
+            thickness = Dimens.Size.divider
+        )
     }
 }
