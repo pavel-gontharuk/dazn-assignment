@@ -69,7 +69,6 @@ fun EventItemView(
     model: EventItemModel,
     onClicked: (Uri) -> Unit
 ) {
-    // todo click listener
     Column(
         modifier = modifier
             .padding(Dimens.Padding.content, 0.dp)
