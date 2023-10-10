@@ -1,4 +1,4 @@
-package com.gontharuk.dazn.presentation.core.navigation
+package com.gontharuk.dazn.presentation.core.navigation.bottom
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -15,24 +15,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.NavType
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import com.gontharuk.dazn.presentation.core.navigation.main.MainTarget
 import com.gontharuk.dazn.presentation.events.ui.EventsScreen
 import com.gontharuk.dazn.presentation.schedule.ui.ScheduleScreen
-import com.gontharuk.dazn.presentation.video.ui.VideoScreen
-import java.net.URL
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 @Composable
-fun MainScreen() {
+fun BottomNav(
+    mainController: NavHostController
+) {
     val navController = rememberNavController()
-    val targets: List<NavTarget> = remember {
-        listOf(NavTarget.Events, NavTarget.Schedule)
+    val targets: List<BottomTarget> = remember {
+        listOf(BottomTarget.Events, BottomTarget.Schedule)
     }
 
     Scaffold(
@@ -74,17 +74,13 @@ fun MainScreen() {
             startDestination = targets.first().route,
             modifier = Modifier.padding(padding)
         ) {
-            composable(NavTarget.Events.route) {
+            composable(BottomTarget.Events.route) {
                 EventsScreen {
                     val encodedUri = URLEncoder.encode(it.toString(), StandardCharsets.UTF_8.toString())
-                    navController.navigate("${NavTarget.Video.route}$encodedUri")
+                    mainController.navigate("${MainTarget.Video.route}$encodedUri")
                 }
             }
-            composable(NavTarget.Schedule.route) { ScheduleScreen() }
-            composable(
-                route = "${NavTarget.Video.route}{${NavTarget.Video.videoArg}}",
-                arguments = listOf(navArgument(NavTarget.Video.videoArg) { type = NavType.StringType })
-            ) { VideoScreen() }
+            composable(BottomTarget.Schedule.route) { ScheduleScreen() }
         }
     }
 }

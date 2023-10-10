@@ -35,8 +35,6 @@ fun VideoPlayer(uri: Uri) {
     AndroidView(
         factory = {
             PlayerView(it).apply {
-                hideController()
-                useController = false
                 player = exoPlayer
                 layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             }
