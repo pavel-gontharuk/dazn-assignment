@@ -1,6 +1,6 @@
-package com.gontharuk.dazn.data.api.di
+package com.gontharuk.dazn.di.rest
 
-import com.gontharuk.dazn.data.BuildConfig
+import com.gontharuk.dazn.BuildConfig
 import com.gontharuk.dazn.data.api.ApiService
 import dagger.Module
 import dagger.Provides

@@ -8,14 +8,12 @@ plugins {
 android {
     namespace = "com.gontharuk.dazn.data"
     compileSdk = 34
-    android.buildFeatures.buildConfig = true
 
     defaultConfig {
         minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        buildConfigField("String", "SERVER_URL", "\"https://us-central1-dazn-sandbox.cloudfunctions.net/\"")
     }
 
     buildTypes {

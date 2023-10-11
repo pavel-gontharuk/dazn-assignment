@@ -8,6 +8,7 @@ plugins {
 android {
     namespace = "com.gontharuk.dazn"
     compileSdk = 34
+    android.buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "com.gontharuk.dazn"
@@ -18,6 +19,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "SERVER_URL", "\"https://us-central1-dazn-sandbox.cloudfunctions.net/\"")
     }
 
     buildTypes {
@@ -44,6 +46,8 @@ dependencies {
     implementation(libs.com.google.android.material)
     implementation(libs.com.google.dagger.hilt.android)
     ksp(libs.com.google.dagger.hilt.compiler)
+    implementation(libs.com.squareup.retrofit2.retrofit)
+    implementation(libs.com.squareup.retrofit2.converter.gson)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

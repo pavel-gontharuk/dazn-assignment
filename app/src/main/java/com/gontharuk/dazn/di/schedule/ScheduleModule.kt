@@ -1,4 +1,4 @@
-package com.gontharuk.dazn.data.schedule.di
+package com.gontharuk.dazn.di.schedule
 
 import com.gontharuk.dazn.data.schedule.entity.ScheduleModelFactory
 import com.gontharuk.dazn.data.schedule.repository.ScheduleRepository

@@ -1,4 +1,4 @@
-package com.gontharuk.dazn.data.events.di
+package com.gontharuk.dazn.di.events
 
 import com.gontharuk.dazn.data.events.entity.EventModelFactory
 import com.gontharuk.dazn.data.events.repository.EventRepository
